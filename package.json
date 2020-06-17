@@ -1,0 +1,15 @@
+{
+  "name": "shopping-app",
+  "version": "1.0.0",
+  "description": "Simple NodeJS backend application for handling shopping lists",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivana Salmanić",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.19"
+  }
+}
