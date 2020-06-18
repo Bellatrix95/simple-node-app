@@ -1,18 +1,17 @@
 import IUser from '../models/interfaces/IUser';
 import userModel from '../models/userModel';
 import bcrypt from 'bcrypt';
+import { generateToken } from '../routes/middleware/auth'
 
 export class UserController {
     
     public async register(req, res) {
         try {
-
             const model: IUser = req.body;
-            const user = await userModel.create(model);
-            
+            await userModel.create(model);
             res.status(200).json({message: 'Successfully registered, sign in to continue!'});
         } catch (error) {
-            res.status(400).json(error.message);
+            res.status(400).json({message: error.message});
         }
     }
 
@@ -22,17 +21,19 @@ export class UserController {
             const user = await userModel.findOne({ email: model.email });
             
             if (!user) {
-                res.status(400).json({message: "Login failed, user not found!"});
-                return;
+                return res.status(400).json({message: "Login failed, user not found!"});
             }
             const isMatch = await bcrypt.compare(model.password, user.password);
    
             if (!isMatch) {
-                res.status(400).json({message: 'Login failed, password does not match!'});
-                return;
+                return res.status(400).json({message: 'Login failed, password does not match!'});
             }
+            
+            const token = generateToken({
+                id: user.id
+            });
 
-            res.send("Login successuful!");
+            res.send({'message': 'Login successful!', 'token': token});
         } catch (error) {
             res.status(400).json({message: error.message});
         }
