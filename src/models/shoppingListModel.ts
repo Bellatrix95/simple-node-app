@@ -1,4 +1,4 @@
-import { model, Schema, Error } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import IShoppingList from './interfaces/IShoppingList';
 
 const ShoppingListSchema:Schema<IShoppingList> = new Schema({

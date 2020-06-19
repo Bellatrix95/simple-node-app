@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 
 export const auth = function (req, res, next) {
     const authHeader = req.headers.authorization ? req.headers.authorization : req.headers['token'];
-
     if (!authHeader) {
         return res.status(401).json({message: "Please send your authentication token!"});
     }

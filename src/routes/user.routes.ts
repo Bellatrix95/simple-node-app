@@ -7,6 +7,6 @@ const userController = new UserController();
 
 userRoutes.post('/register', userController.register);
 userRoutes.post('/login', userController.login);
-//userRoutes.post('/resetPassword', auth, userController.resetPassword);
+userRoutes.post('/changePassword', auth, userController.changePassword);
 
 export default userRoutes;
