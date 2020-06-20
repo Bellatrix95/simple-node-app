@@ -4,28 +4,30 @@ import chaiHttp from 'chai-http';
 
 
 
-const app = require('../app');
+const app = require('../src/app');
 chai.use(chaiHttp);
-const should = chai.should();
+
+let removeShoppingListIds = [];
 
 describe('Shopping List Routes Test', () => {
     let token;
 
     before(function (done) {
         chai.request(app)
-        .post('/user/register')
+        .post('/register')
         .set('Content-Type', 'application/json')
         .send(JSON.stringify({"email": "testEmail@test.com", "password": "ivana" }))
         .end((err, res) => {
             res.should.have.status(200);
 
             chai.request(app)
-            .post('/user/login')
+            .post('/login')
             .set('Content-Type', 'application/json')
             .send(JSON.stringify({"email": "testEmail@test.com", "password": "ivana" }))
             .end((err, res) => {
                 res.should.have.status(200);
                 token = res.body.token;
+                //if (err) done(err);
                 done();
             });
         });
@@ -38,7 +40,7 @@ describe('Shopping List Routes Test', () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
-                "name": 'First shopping list', 
+                "name": 'Test 1. shopping list', 
                 "products": [
                     {
                         "name": "product1",
@@ -51,6 +53,7 @@ describe('Shopping List Routes Test', () => {
             }))
             .end((err, res) => {
                 res.should.have.status(200);
+                removeShoppingListIds.push(res.body.list._id);
                 done();
             });
         });
@@ -82,13 +85,14 @@ describe('Shopping List Routes Test', () => {
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token)
-            .send(JSON.stringify({ "name": 'First shopping list' }))
+            .send(JSON.stringify({ "name": 'Test 1. shopping list' }))
             .end((err, res) => {
                 res.should.have.status(400);
                 done();
             });
         });
     });
+
 
     describe('GET /shopping_list', () => {
         it('Get users shopping lists!', (done) => {
@@ -97,7 +101,7 @@ describe('Shopping List Routes Test', () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
-                "name": 'Second shopping list', 
+                "name": 'Test 2. shopping list', 
                 "products": [
                     {
                         "name": "product1"
@@ -106,12 +110,12 @@ describe('Shopping List Routes Test', () => {
             }))
             .end((err, res) => {
                 res.should.have.status(200);
+                removeShoppingListIds.push(res.body.list._id);
 
                 chai.request(app)
                 .get('/shopping_list')
                 .set('Authorization', 'Bearer ' + token)
-                .set('Content-Type', 'application/json')
-                .send(JSON.stringify({"email": "testEmail@test.com", "password": "ivana" }))
+                .send()
                 .end((err, res) => {
                     res.should.have.status(200);
                     done();
@@ -127,7 +131,7 @@ describe('Shopping List Routes Test', () => {
             .set('Content-Type', 'application/json')
             .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
-                "name": 'Third shopping list', 
+                "name": 'Test 3. shopping list', 
                 "products": [
                     {
                         "name": "product1"
@@ -136,9 +140,8 @@ describe('Shopping List Routes Test', () => {
             }))
             .end((err, res) => {
                 res.should.have.status(200);
-                console.log(res);
-                let shoppingList = res.body.list
-
+                let shoppingList = res.body.list;
+                removeShoppingListIds.push(shoppingList._id);
                 chai.request(app)
                 .put('/shopping_list/' + shoppingList._id)
                 .set('Authorization', 'Bearer ' + token)
@@ -151,9 +154,10 @@ describe('Shopping List Routes Test', () => {
             });
         });
 
+        //randomId = 5eee19ddbe8d123598dc1d86 than can be parsed to ObjectId
         it('Shopping list not found!', (done) => {
             chai.request(app)
-            .put('/shopping_list/' + 'randomId')
+            .put('/shopping_list/' + '5eee19ddbe8d123598dc1d86')
             .set('Authorization', 'Bearer ' + token)
             .set('Content-Type', 'application/json')
             .send(JSON.stringify({"name": "New list name"}))
@@ -164,33 +168,34 @@ describe('Shopping List Routes Test', () => {
         });
     });
 
+
+
     describe('DELETE /shopping_list/:id', () => {
         it('Shopping list deleted!', (done) => {
-            chai.request(app)
-            .post('/shopping_list')
-            .set('Content-Type', 'application/json')
-            .set('Authorization', 'Bearer ' + token)
-            .send(JSON.stringify({ 
-                "name": 'Fourth shopping list', 
-                "products": [
-                    {
-                        "name": "product1"
-                    }
-                ]
-            }))
-            .end((err, res) => {
-                res.should.have.status(200);
-                console.log(res);
-                let shoppingList = res.body.list
-
+            for (let i = 0; i < removeShoppingListIds.length; i++) {
                 chai.request(app)
-                .delete('/shopping_list/' + shoppingList._id)
+                .delete('/shopping_list/' + removeShoppingListIds[i])
                 .set('Authorization', 'Bearer ' + token)
                 .send()
                 .end((err, res) => {
                     res.should.have.status(200);
-                    done();
+                    //if (err) done(err);
                 });
+            }
+            done();
+        });
+    });
+
+
+    describe('DELETE /delete_user/:email', () => {
+        it('Delete test user!', (done) => {
+            chai.request(app)
+            .delete('/delete_user/testEmail@test.com')
+            .set('token', "String token for tests")
+            .end((err, res) => {
+                res.should.have.status(200);
+                //if (err) done(err);
+                done();
             });
         });
     });

@@ -6,7 +6,6 @@ import chaiHttp from 'chai-http';
 
 const app = require('../src/app');
 chai.use(chaiHttp);
-const should = chai.should();
 
 describe('User Routes Test', () => {
     describe('POST /register', () => {

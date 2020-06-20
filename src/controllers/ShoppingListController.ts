@@ -17,7 +17,6 @@ export class ShoppingListController {
     }
 
     public async create(req, res) {
-        console.log("dosao")
         try {
             const userId = req.decoded.id;
             const list: IShoppingList = req.body;
@@ -43,7 +42,7 @@ export class ShoppingListController {
     public async delete(req, res) {
         try {
             const id = req.params.id;
-            shoppingListModel.remove(id);
+            await shoppingListModel.findByIdAndDelete({_id: id});
 
             res.status(200).json({message: 'List deleted!'});
         } catch (error) {
@@ -86,7 +85,7 @@ export class ShoppingListController {
                 list.products = products;
             }
 
-            list.save(); //or update
+            await list.save(); //or update
 
             res.status(200).json({message: 'List updated!'});
         } catch (error) {

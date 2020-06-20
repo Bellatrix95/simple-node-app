@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "fe39269a-26e1-4a3f-af0c-206e88fa0e19",
+		"name": "shooping-list-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"tipuric70@gmail.com\",\n\t\"password\":\"Ivana\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"tipuric70@gmail.com\",\n\t\"password\":\"Ivana\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get shopping lists",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YzQwZTE5NGUzNDEwMmYzOGE0OCIsImlhdCI6MTU5MjU2NTQwNX0.75jcA9rNY2-3ux4A0iRWJzILzGr8vL_938oCBTjwrjo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/shopping_list/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"shopping_list",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create shopping list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YmViY2JiYzI4NDA2ZWMxOGUxOCIsImlhdCI6MTU5MjU2NDk1NH0.BaSLJ0TsPI9gJ4mpcN6KNg6t9wON4V1lX3uuIGcA4JU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Shopping list\",\n\t\"products\": [\n\t\t{\n\t\t\t\"name\":\"product1\",\n\t\t\t\"quantity\": 2\n\t\t},\n\t\t{\n\t\t\t\"name\":\"product2\",\n\t\t\t\"quantity\": 3\n\t\t},\n\t\t{\n\t\t\t\"name\":\"product3\"\n\t\t}\n\t],\n\t\"createdAt\": \"2020-01-04T00:00:00Z\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/shopping_list/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"shopping_list",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update shopping list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YmViY2JiYzI4NDA2ZWMxOGUxOCIsImlhdCI6MTU5MjU2NDk1NH0.BaSLJ0TsPI9gJ4mpcN6KNg6t9wON4V1lX3uuIGcA4JU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"New shopping list\",\n\t\"products\": [\n\t\t{\n\t\t\t\"name\":\"product1\",\n\t\t\t\"quantity\": 2\n\t\t},\n\t\t{\n\t\t\t\"name\":\"product2\",\n\t\t\t\"quantity\": 3\n\t\t},\n\t\t{\n\t\t\t\"name\":\"product3\"\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/shopping_list/5eee27db455f9d4699ec2624",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"shopping_list",
+						"5eee27db455f9d4699ec2624"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete shopping list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YmViY2JiYzI4NDA2ZWMxOGUxOCIsImlhdCI6MTU5MjU2NDk1NH0.BaSLJ0TsPI9gJ4mpcN6KNg6t9wON4V1lX3uuIGcA4JU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/shopping_list/5eee25b5de3bad43a454e5d3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"shopping_list",
+						"5eee25b5de3bad43a454e5d3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get aggregation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YzQwZTE5NGUzNDEwMmYzOGE0OCIsImlhdCI6MTU5MjU2NTQwNX0.75jcA9rNY2-3ux4A0iRWJzILzGr8vL_938oCBTjwrjo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/shopping_list/aggregate?from=2020-01-01T00:00:00Z&to=2020-01-04T00:00:00Z",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"shopping_list",
+						"aggregate"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2020-01-01T00:00:00Z"
+						},
+						{
+							"key": "to",
+							"value": "2020-01-04T00:00:00Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZWI0YzQwZTE5NGUzNDEwMmYzOGE0OCIsImlhdCI6MTU5MjU2NTQwNX0.75jcA9rNY2-3ux4A0iRWJzILzGr8vL_938oCBTjwrjo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"tipuri71@gmail.com\",\n\t\"currentPassword\": \"Ivana\",\n\t\"newPassword\": \"123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/change_password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"change_password"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

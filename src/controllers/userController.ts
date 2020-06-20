@@ -42,31 +42,27 @@ export class UserController {
     }
 
     public async changePassword(req, res) {
-        console.log("dosaoooooo")
         try {
             const userId = req.decoded.id;
             const currentPassword = req.body.currentPassword;
             const newPassword = req.body.newPassword;
 
             const user = await userModel.findById(userId);
-
-            console.log("user " + user)
             
             if (!user) {
                 return res.status(400).json({message: "User not found!"});
             }
-            const isMatch = await bcrypt.compare(user.password, currentPassword);
+
+            const isMatch = await userModel.schema.methods.comparePassword(currentPassword, user.password);
    
             if (!isMatch) {
                 return res.status(400).json({message: 'Current password does not match!'});
             }
-    
             if (currentPassword === newPassword) {
                 return res.status(400).json({message: 'Passwords are the same!'});
             }
-
             user.password = newPassword;
-            user.save();
+            await user.save();
 
             res.status(200).json({message: 'Successfully changed password!'});
         } catch (error) {
@@ -79,7 +75,7 @@ export class UserController {
     public async deleteUser(req, res) {
         try {
             const email = req.params.email;
-            userModel.deleteOne({"email": email}).exec();
+            await userModel.deleteOne({"email": email}).exec();
             res.status(200).json({message: 'User deleted!'});
         } catch (error) {
             console.log(error);
