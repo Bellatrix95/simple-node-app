@@ -107,23 +107,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 #### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
-| 200 | | New user created | {
-    "user_lists": [
-        {
-            "_id": "5eee79f62fcdce001d93c4d1",
-            "name": "my Shopping list",
-            "products": [
-                {
-                    "quantity": 2,
-                    "_id": "5eee79f62fcdce001d93c4d2",
-                    "name": "product1"
-                }
-            ],
-            "createdAt": "2020-06-21T00:00:00.000Z",
-            "userId": "5eee79bb2fcdce001d93c4d0"
-        }
-    ]
-}
+| 200 | | New user created | { "user_lists": [{ "_id": "5eee79f62fcdce001d93c4d1", "name": "my Shopping list", "products": [{ "quantity": 2, "_id": "5eee79f62fcdce001d93c4d2", "name": "product1"} ], "createdAt": "2020-06-21T00:00:00.000Z", "userId": "5eee79bb2fcdce001d93c4d0"} ]}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 
 ### POST `/shopping_list` - Body parameters ###
@@ -136,22 +120,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 #### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
-| 200 | | Create new shopping list | {
-    "message": "New list \"my Shopping list\" created!",
-    "list": {
-        "_id": "5eee79f62fcdce001d93c4d1",
-        "name": "my Shopping list",
-        "products": [
-            {
-                "quantity": 2,
-                "_id": "5eee79f62fcdce001d93c4d2",
-                "name": "product1"
-            }
-        ],
-        "createdAt": "2020-06-21T00:00:00.000Z",
-        "userId": "5eee79bb2fcdce001d93c4d0"
-    }
-}
+| 200 | | Create new shopping list | {"message": "New list \"my Shopping list\" created!", "list": {"_id": "5eee79f62fcdce001d93c4d1","name": "my Shopping list","products": [ {"quantity": 2,"_id": "5eee79f62fcdce001d93c4d2","name": "product1" }],"createdAt": "2020-06-21T00:00:00.000Z","userId": "5eee79bb2fcdce001d93c4d0" }}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 | 400 | 400 | Error when list name isn't unique | {message: 'Shopping list name is not unique!'}
 
