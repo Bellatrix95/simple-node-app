@@ -6,6 +6,7 @@ import chaiHttp from 'chai-http';
 
 const app = require('../src/app');
 chai.use(chaiHttp);
+const should = chai.should();
 
 let removeShoppingListIds = [];
 

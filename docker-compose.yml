@@ -1,0 +1,33 @@
+version: '2'
+services:
+  mongodb:
+    image: 'mongo:4.0'
+    container_name: 'mongo'
+    ports: 
+      - '27017:27017'
+    environment:
+      MONGO_DATA_DIR: '/data/db'
+      MONGO_LOG_DIR: '/dev/null'
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./data/mongo:/data/db
+    command: 'mongod --port 27017 --smallfiles --logpath=/dev/null'
+
+  node-app:
+    container_name: 'sinple-node-app'
+    depends_on:
+      - "mongodb"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      MONGODB_CONNECTION_STRING: 'mongodb://admin:admin@mongo:27017/shoppingList?authSource=admin'
+    volumes:
+      - ./data/node-app:/dist
+    ports:
+      - 4000:4000
+networks:
+   default:
+       external:
+           name: node_app_network

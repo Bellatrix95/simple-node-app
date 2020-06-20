@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "fe39269a-26e1-4a3f-af0c-206e88fa0e19",
-		"name": "shooping-list-app",
+		"name": "shopping-list-app",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -298,6 +298,28 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "71b1b21c-847a-42fa-9dec-bbfff5dddd42",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c1e59d67-c621-4ac2-8c3b-1d91a9d4ea10",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

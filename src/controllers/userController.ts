@@ -12,7 +12,7 @@ export class UserController {
             res.status(200).json({message: 'Successfully registered, sign in to continue!'});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -27,7 +27,7 @@ export class UserController {
             const isMatch = await bcrypt.compare(model.password, user.password);
    
             if (!isMatch) {
-                return res.status(400).json({message: 'Login failed, password does not match!'});
+                return res.status(400).json({message: 'Login failed, the password does not match!'});
             }
 
             const token = generateToken({
@@ -37,7 +37,7 @@ export class UserController {
             res.status(200).send({'message': 'Login successful!', 'token': token});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -67,7 +67,7 @@ export class UserController {
             res.status(200).json({message: 'Successfully changed password!'});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -79,7 +79,7 @@ export class UserController {
             res.status(200).json({message: 'User deleted!'});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 }

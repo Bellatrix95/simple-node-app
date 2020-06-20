@@ -8,11 +8,11 @@ export class ShoppingListController {
     public async get(req, res) {
         try {
             const userId = req.decoded.id;
-            const list = await shoppingListModel.find({userId: new mongo.ObjectId(userId)});
+            const list = await shoppingListModel.find({"userId": userId});
             res.status(200).json({'user_lists': list});
         } catch (error) {
             console.log(error);
-            res.status(500).json({message: 'Error occured, please try again!'});
+            res.status(500).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -34,7 +34,7 @@ export class ShoppingListController {
             if (error.code == 11000) {
                 res.status(400).json({message: 'Shopping list name is not unique!'});
             } else {
-                res.status(400).json({message: 'Error occured, please try again!'});
+                res.status(400).json({message: 'Error occurred, please try again!'});
             }
         }
     }
@@ -47,7 +47,7 @@ export class ShoppingListController {
             res.status(200).json({message: 'List deleted!'});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -90,7 +90,7 @@ export class ShoppingListController {
             res.status(200).json({message: 'List updated!'});
         } catch (error) {
             console.log(error);
-            res.status(400).json({message: 'Error occured, please try again!'});
+            res.status(400).json({message: 'Error occurred, please try again!'});
         }
     }
 
@@ -135,7 +135,7 @@ export class ShoppingListController {
             res.status(200).json({'aggregation_result': result})
         } catch (error) {
             console.log(error);
-            res.status(500).json({message: "Aggregation failed!"});
+            res.status(400).json({message: "Aggregation failed!"});
         }
     }
 }
