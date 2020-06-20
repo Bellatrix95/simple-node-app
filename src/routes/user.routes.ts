@@ -11,5 +11,5 @@ userRoutes.post('/login', userController.login);
 userRoutes.put('/change_password', auth, userController.changePassword);
 
 //dummy route for deleting test user so repeated tests wont fail
-userRoutes.delete('/delete_user', tests, userController.deleteUser);
+userRoutes.delete('/delete_user/:email', tests, userController.deleteUser);
 export default userRoutes;

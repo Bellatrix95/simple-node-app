@@ -2,11 +2,10 @@
   "name": "shopping-app",
   "version": "1.0.0",
   "description": "Simple NodeJS backend application for handling shopping lists",
-  "main": "dist/app.js",
+  "main": "dist/src/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/app.js",
-    "dev": "tsc && nodemon dist/app.js",
+    "start": "tsc && node dist/src/app.js",
     "test": "tsc && mocha -r ts-node/register tests/test.ts"
   },
   "author": "Ivana Salmanić",

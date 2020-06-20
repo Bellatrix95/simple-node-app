@@ -36,7 +36,7 @@ describe('Shopping List Routes Test', () => {
             chai.request(app)
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
                 "name": 'First shopping list', 
                 "products": [
@@ -59,7 +59,7 @@ describe('Shopping List Routes Test', () => {
             chai.request(app)
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
                 "products": [
                     {
@@ -81,7 +81,7 @@ describe('Shopping List Routes Test', () => {
             chai.request(app)
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ "name": 'First shopping list' }))
             .end((err, res) => {
                 res.should.have.status(400);
@@ -95,7 +95,7 @@ describe('Shopping List Routes Test', () => {
             chai.request(app)
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
                 "name": 'Second shopping list', 
                 "products": [
@@ -109,7 +109,7 @@ describe('Shopping List Routes Test', () => {
 
                 chai.request(app)
                 .get('/shopping_list')
-                .set('token', token)
+                .set('Authorization', 'Bearer ' + token)
                 .set('Content-Type', 'application/json')
                 .send(JSON.stringify({"email": "testEmail@test.com", "password": "ivana" }))
                 .end((err, res) => {
@@ -123,9 +123,9 @@ describe('Shopping List Routes Test', () => {
     describe('PUT /shopping_list/:id', () => {
         it('Shopping list name updated!', (done) => {
             chai.request(app)
-            .post('/shopping_list')
+            .post('/shopping_list/')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
                 "name": 'Third shopping list', 
                 "products": [
@@ -141,7 +141,7 @@ describe('Shopping List Routes Test', () => {
 
                 chai.request(app)
                 .put('/shopping_list/' + shoppingList._id)
-                .set('token', token)
+                .set('Authorization', 'Bearer ' + token)
                 .set('Content-Type', 'application/json')
                 .send(JSON.stringify({"name": "New list name"}))
                 .end((err, res) => {
@@ -154,7 +154,7 @@ describe('Shopping List Routes Test', () => {
         it('Shopping list not found!', (done) => {
             chai.request(app)
             .put('/shopping_list/' + 'randomId')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .set('Content-Type', 'application/json')
             .send(JSON.stringify({"name": "New list name"}))
             .end((err, res) => {
@@ -169,7 +169,7 @@ describe('Shopping List Routes Test', () => {
             chai.request(app)
             .post('/shopping_list')
             .set('Content-Type', 'application/json')
-            .set('token', token)
+            .set('Authorization', 'Bearer ' + token)
             .send(JSON.stringify({ 
                 "name": 'Fourth shopping list', 
                 "products": [
@@ -185,7 +185,8 @@ describe('Shopping List Routes Test', () => {
 
                 chai.request(app)
                 .delete('/shopping_list/' + shoppingList._id)
-                .set('token', token)
+                .set('Authorization', 'Bearer ' + token)
+                .send()
                 .end((err, res) => {
                     res.should.have.status(200);
                     done();

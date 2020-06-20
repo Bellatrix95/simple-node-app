@@ -122,14 +122,11 @@ describe('User Routes Test', () => {
         });
     });
 
-    //still not working
-    describe('DELETE /delete_user', () => {
+    describe('DELETE /delete_user/:email', () => {
         it('Delete test user!', (done) => {
             chai.request(app)
-            .delete('/delete_user')
+            .delete('/delete_user/testEmail@test.com')
             .set('token', "String token for tests")
-            .set('Content-Type', 'application/json')
-            .send(JSON.stringify({ "email": "testEmail@test.com"}))
             .end((err, res) => {
                 res.should.have.status(200);
                 //if (err) done(err);

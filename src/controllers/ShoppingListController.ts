@@ -17,12 +17,11 @@ export class ShoppingListController {
     }
 
     public async create(req, res) {
+        console.log("dosao")
         try {
             const userId = req.decoded.id;
             const list: IShoppingList = req.body;
             list.userId = userId;
-
-            //add check for multiple product objects with same name
 
             const result = await shoppingListModel.create(list);
 
@@ -69,17 +68,19 @@ export class ShoppingListController {
                 return res.status(400).json({message: 'This list does not belong to you!' });
             }
 
-            const products = updateListInfo.products;
-
             if (!list) {
                 return res.status(400).json({message: "Shopping list not found!"});
             }
-
-            //provjeri je li vec postoji to ime u bazi
             
             if (updateListInfo.name) {
+                const checkIfNameIsTaken = await shoppingListModel.findOne({"name": updateListInfo.name});
+                if (checkIfNameIsTaken) {
+                    return res.status(400).json({message: "Shopping list name already exists!"});
+                }
                 list.name = updateListInfo.name;
             }
+
+            const products = updateListInfo.products;
 
             if (products) {
                 list.products = products;

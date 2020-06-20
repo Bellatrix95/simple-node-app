@@ -42,12 +42,15 @@ export class UserController {
     }
 
     public async changePassword(req, res) {
+        console.log("dosaoooooo")
         try {
             const userId = req.decoded.id;
             const currentPassword = req.body.currentPassword;
             const newPassword = req.body.newPassword;
 
             const user = await userModel.findById(userId);
+
+            console.log("user " + user)
             
             if (!user) {
                 return res.status(400).json({message: "User not found!"});
@@ -72,11 +75,11 @@ export class UserController {
         }
     }
 
-    //remove test user from database
+    //remove user from database
     public async deleteUser(req, res) {
         try {
-            userModel.remove({"email": "testEmail@test.com"});
-
+            const email = req.params.email;
+            userModel.deleteOne({"email": email}).exec();
             res.status(200).json({message: 'User deleted!'});
         } catch (error) {
             console.log(error);
