@@ -5,7 +5,9 @@
   "main": "dist/app.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/app.js"
+    "start": "tsc && node dist/app.js",
+    "dev": "tsc && nodemon dist/app.js",
+    "test": "tsc && mocha -r ts-node/register tests/test.ts"
   },
   "author": "Ivana Salmanić",
   "license": "ISC",

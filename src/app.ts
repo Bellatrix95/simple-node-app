@@ -22,7 +22,6 @@ class Server {
 
     private initializeRoutes() {
         this.app.use('/', userRoutes);
-        this.app.use('/user', userRoutes);
         this.app.use('/shopping_list', shoppingListRoutes);
     }
 

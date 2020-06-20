@@ -75,6 +75,8 @@ export class ShoppingListController {
                 return res.status(400).json({message: "Shopping list not found!"});
             }
 
+            //provjeri je li vec postoji to ime u bazi
+            
             if (updateListInfo.name) {
                 list.name = updateListInfo.name;
             }

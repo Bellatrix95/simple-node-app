@@ -34,7 +34,7 @@ export class UserController {
                 id: user.id
             });
 
-            res.send({'message': 'Login successful!', 'token': token});
+            res.status(200).send({'message': 'Login successful!', 'token': token});
         } catch (error) {
             console.log(error);
             res.status(400).json({message: 'Error occured, please try again!'});
@@ -66,6 +66,18 @@ export class UserController {
             user.save();
 
             res.status(200).json({message: 'Successfully changed password!'});
+        } catch (error) {
+            console.log(error);
+            res.status(400).json({message: 'Error occured, please try again!'});
+        }
+    }
+
+    //remove test user from database
+    public async deleteUser(req, res) {
+        try {
+            userModel.remove({"email": "testEmail@test.com"});
+
+            res.status(200).json({message: 'User deleted!'});
         } catch (error) {
             console.log(error);
             res.status(400).json({message: 'Error occured, please try again!'});
