@@ -23,7 +23,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 # `Simple Node App` API docs #
 
 
-## {icon bars} Routes ##
+## Routes ##
 | Route | Description 
 | ---- | ---- 
 | **POST** `/register` | Create new user
@@ -34,7 +34,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 
 # Shopping List API docs #
 
-## {icon bars} Routes ##
+## Routes ##
 | Route | Description 
 | ---- | ---- 
 | **GET** `/shopping_list` | Get users shopping lists
@@ -43,27 +43,27 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | **PUT** `/shopping_list/:id` | Update shopping list info
 | **DELETE** `/shopping_list/:id` | Delete shopping list
 
-## {icon bars} User routes description ##
+## User routes description ##
 
-### {icon bars} POST `/register` - Body parameters ###
+### POST `/register` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | email | string | yes | User email
 | password | string | yes | User password
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | New user created| {message: 'Successfully registered, sign in to continue!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 
-### {icon bars} POST `/login` - Body parameters ###
+### POST `/login` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | email | string | yes | User email
 | password | string | yes | User password
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | User loged in | {"message": "Login successful!", "token": "***"}
@@ -71,13 +71,13 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | 400 | 400 | Password does not match | {message: 'Login failed, the password does not match!'}
 | 400 | 400 | User not found | {message: "Login failed, user not found!"}
 
-### {icon bars} PUT `/change_password` - Body parameters ###
+### PUT `/change_password` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | currentPassword | string | yes | User's current password
 | newPassword | string | yes | User's new password
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Password changed | {message: 'Successfully changed password!'}
@@ -85,26 +85,26 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | 400 | 400 | Passwords are the same | {message: 'Passwords are the same!'}
 | 400 | 400 | Authentication failed | {message: 'Current password does not match!'}
 
-### {icon bars} DELETE `/delete_user/:email` - Body parameters ###
+### DELETE `/delete_user/:email` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 |  |  |  | 
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | User deleted | {message: 'User deleted!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 
 
-## {icon bars} Shopping lists routes description ##
+## Shopping lists routes description ##
 
-### {icon bars} GET `/shopping_list` - Body parameters ###
+### GET `/shopping_list` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 |  |  |  | 
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | New user created | {
@@ -126,14 +126,14 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 }
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 
-### {icon bars} POST `/shopping_list` - Body parameters ###
+### POST `/shopping_list` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | name | string | yes | Shopping list name
 | createdAt | date | no | Datetime when was list created
 | products | array of objects | yes | List of product objects that contain `name` and `quantity`
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Create new shopping list | {
@@ -156,13 +156,13 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | 400 | 400 | Error when list name isn't unique | {message: 'Shopping list name is not unique!'}
 
 
-### {icon bars} PUT `/shopping_list/:id` - Body parameters ###
+### PUT `/shopping_list/:id` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | products | array of objects | no | New list of products
 | name | string | no | New list name
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Shopping list updated | {message: 'List updated!'}
@@ -172,25 +172,25 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | 400 | 400 | Shopping list not found | {message: "Shopping list not found!"}
 | 400 | 400 | Name is already taken | {message: "Shopping list name already exists!"}
 
-### {icon bars} DELETE `/shopping_list/:id` - Body parameters ###
+### DELETE `/shopping_list/:id` - Body parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 |  |  |  | 
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Shopping list deleted | {message: 'List deleted!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
 
 
-### {icon bars} DELETE `/shopping_list/aggregate` - Route parameters ###
+### DELETE `/shopping_list/aggregate` - Route parameters ###
 | Parameter | Data type | Mandatory | Description 
 | -----  | -----  | -----   | ----- 
 | from | date | yes | Time range parameter
 | to | date | yes | Time range parameter
 
-#### {icon bars} Response ####
+#### Response ####
 | HTTP Status Code | App Error code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Returns list of products and their quantityes for logged in user | {"aggregation_result": []}
