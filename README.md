@@ -52,7 +52,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | password | string | yes | User password
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | New user created| {message: 'Successfully registered, sign in to continue!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -64,9 +64,9 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | password | string | yes | User password
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
-| 200 | | User loged in | {"message": "Login successful!", "token": "***"}
+| 200 | | User logged in | {"message": "Login successful!", "token": "***"}
 | 400 | 400 | In case of an error | {message: 'Error occured, please try again!'}
 | 400 | 400 | Password does not match | {message: 'Login failed, the password does not match!'}
 | 400 | 400 | User not found | {message: "Login failed, user not found!"}
@@ -78,11 +78,11 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | newPassword | string | yes | User's new password
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Password changed | {message: 'Successfully changed password!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
-| 400 | 400 | Passwords are the same | {message: 'Passwords are the same!'}
+| 400 | 400 | New password can not be your old password | {message: 'New password can not be your old password!'}
 | 400 | 400 | Authentication failed | {message: 'Current password does not match!'}
 
 ### DELETE `/delete_user/:email` - Body parameters ###
@@ -91,7 +91,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 |  |  |  | 
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | User deleted | {message: 'User deleted!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -105,7 +105,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 |  |  |  | 
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | New user created | { "user_lists": [{ "_id": "5eee79f62fcdce001d93c4d1", "name": "my Shopping list", "products": [{ "quantity": 2, "_id": "5eee79f62fcdce001d93c4d2", "name": "product1"} ], "createdAt": "2020-06-21T00:00:00.000Z", "userId": "5eee79bb2fcdce001d93c4d0"} ]}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -118,7 +118,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | products | array of objects | yes | List of product objects that contain `name` and `quantity`
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Create new shopping list | {"message": "New list \"my Shopping list\" created!", "list": {"_id": "5eee79f62fcdce001d93c4d1","name": "my Shopping list","products": [ {"quantity": 2,"_id": "5eee79f62fcdce001d93c4d2","name": "product1" }],"createdAt": "2020-06-21T00:00:00.000Z","userId": "5eee79bb2fcdce001d93c4d0" }}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -132,7 +132,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | name | string | no | New list name
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Shopping list updated | {message: 'List updated!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -147,7 +147,7 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 |  |  |  | 
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
 | 200 | | Shopping list deleted | {message: 'List deleted!'}
 | 400 | 400 | In case of an error | {message: 'Error occurred, please try again!'}
@@ -160,8 +160,8 @@ The token should be put in the Headers as Authorization Bearer {token value}.
 | to | date | yes | Time range parameter
 
 #### Response ####
-| HTTP Status Code | App Error code | Description | Response body 
+| HTTP Status Code | App Error Code | Description | Response body 
 | -----  | -----  | -----   | ----- 
-| 200 | | Returns list of products and their quantityes for logged in user | {"aggregation_result": []}
+| 200 | | Returns list of products and their quantities for logged in user | {"aggregation_result": []}
 | 400 | 400 | In case of an error | {message: "Aggregation failed!"}
 | 400 | 400 | Range parameters are not valid | {message: "Range parameters are not valid!"}

@@ -59,7 +59,7 @@ export class UserController {
                 return res.status(400).json({message: 'Current password does not match!'});
             }
             if (currentPassword === newPassword) {
-                return res.status(400).json({message: 'Passwords are the same!'});
+                return res.status(400).json({message: 'New password can not be your old password!'});
             }
             user.password = newPassword;
             await user.save();
